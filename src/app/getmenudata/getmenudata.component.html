@@ -34,9 +34,11 @@
         <p>
           <mat-form-field appearance="fill">
             <mat-label>Nombre</mat-label>
-            <input matInput placeholder="" [(ngModel)]="nombre">
+            <input matInput placeholder="" [(ngModel)]="nombre" [ngClass]="{'invalid-field': !nombreValido}" (input)="validarNombre()">
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-            <mat-hint>aquí va a ir validación</mat-hint>
+            <div [ngStyle]="{'color': nombreValido ? 'black' : 'red'}">
+              <mat-hint>{{ mensajeValidacion }}</mat-hint>
+            </div>
           </mat-form-field>
         </p>
         <p>
@@ -55,7 +57,7 @@
             <mat-hint>aquí va a ir validación</mat-hint>
           </mat-form-field>
         </p>
-        <button mat-raised-button color="primary" (click)="addCategory()">Agregar</button>
+        <button mat-raised-button color="primary" (click)="addCategory()" [disabled]="botonBloqueado">Agregar</button>
       </div>
     </mat-grid-tile>    
     
